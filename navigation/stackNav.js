@@ -1,19 +1,17 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import { View } from 'react-native';
-import Details from '../screens/Details';
-import Search from '../screens/Search';
+import Search from '../screens/Search'
+import Details from '../screens/Details'
 import { COLORS } from '../constants';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 const Stack = createStackNavigator();
 
-export default function StackNav() {
+export default function stackNav() {
   
  let routeName = 'Search';
     return (
-    <Stack.Navigator initialRouteName={routeName}>
+      <Stack.Navigator initialRouteName={routeName}>
         <Stack.Screen name='Search' component={Search}
               options={({navigation}) => ({
                 title: '', 
@@ -22,7 +20,7 @@ export default function StackNav() {
                   elevation: 0
                 }})}
             />
-        <Stack.Screen
+          <Stack.Screen
           name="Details"
           component={Details}
           options={({navigation}) => ({

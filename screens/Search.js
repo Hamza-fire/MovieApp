@@ -3,7 +3,9 @@ import React, {useState} from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image, FlatList} from 'react-native';
 import { FONTS, images } from '../constants';
 import styles from '../constants/styleSignup'
-
+import { connect } from 'react-redux'
+import toggleFavorite from '../Store/Reducers/favoriteReducer';
+import store from '../Store/configureStore';
 
 const Search = ({navigation}) => {
     const [data, setData] = useState([]);
@@ -21,6 +23,12 @@ const Search = ({navigation}) => {
       setTitle(text);
       loadMovie(text);
     }
+
+    function toggleFavoriteMovie(item){
+      const action = { type: "TOGGLE_FAVORITE", value: item}
+      store.dispatch(action)
+    }
+
 
       return (
         <View style={styles.containerParent}>
@@ -58,7 +66,13 @@ const Search = ({navigation}) => {
         </View>
     )
 }
-  
-export default Search;
+
+const mapStateToProps = (state) => {
+  return {
+    favoritesFilm: state.favoritesFilm
+  }
+}
+
+export default connect(mapStateToProps)(Search);
   
   
